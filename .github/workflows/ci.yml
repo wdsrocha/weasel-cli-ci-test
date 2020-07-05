@@ -23,5 +23,8 @@ jobs:
       - name: Build with Poetry
         run: poetry build
 
+      - name: Setup Poetry stuff 👀
+        run: poetry config repositories.test https://test.pypi.org/legacy/
+
       - name: Publish package to TestPyPI
-        run: poetry publish --username wdsrocha --password ${{ secrets.test_pypi_password }} --repository "https://test.pypi.org/legacy/"
+        run: poetry publish --username wdsrocha --password ${{ secrets.test_pypi_password }} --repository test
