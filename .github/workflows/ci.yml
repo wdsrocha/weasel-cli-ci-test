@@ -1,6 +1,10 @@
 name: CI
 
-on: push
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   build:
@@ -20,13 +24,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
 
-      - name: Build with Poetry
-        run: poetry build
-
-      - name: Setup Poetry stuff 👀
+      - name: Setup enviornment variables
         run: |
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config pypi-token.test-pypi ${{ secrets.test_pypi_password }}
 
-      - name: Publish package to TestPyPI
-        run: poetry publish --username wdsrocha --repository test-pypi
+      - name: Build and check
+        run: poetry build && poetry check
+      # - name: Publish package to TestPyPI
+      #   run: poetry publish --username wdsrocha --repository test-pypi
