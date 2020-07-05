@@ -18,20 +18,7 @@ def validate_target(ctx, param, value):
     '-t', '--target',
     type=str,
     default='METHINKS IT IS LIKE A WEASEL',
-    callback=validate_target,
-    show_default=True)
-@click.option(
-    '-p', '--population-size',
-    type=click.IntRange(1),
-    default=100,
-    show_default=True)
-@click.option(
-    '-r', '--mutation-rate',
-    type=click.FloatRange(0, 1),
-    default=.05,
-    show_default=True)
-@click.option(
-    '--color/--no-color', 'is_colorized',
+    callor/--no-color', 'is_colorized',
     default=True,
     is_flag=True,
     show_default=True,
