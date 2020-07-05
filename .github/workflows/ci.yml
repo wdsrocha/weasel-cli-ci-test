@@ -24,4 +24,4 @@ jobs:
         run: poetry build
 
       - name: Publish package to TestPyPI
-        run: poetry publish
+        run: poetry publish --username wdsrocha --password ${{ secrets.test_pypi_password }} --repository "https://test.pypi.org/legacy/"
