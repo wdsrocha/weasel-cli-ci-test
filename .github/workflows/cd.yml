@@ -1,0 +1,33 @@
+on:
+  create:
+    tags:
+      - v*
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.6"
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+
+      - name: Setup enviornment variables
+        run: |
+          poetry config repositories.test-pypi https://test.pypi.org/legacy/
+          poetry config pypi-token.test-pypi ${{ secrets.test_pypi_password }}
+
+      - name: Build and check
+        run: poetry build && poetry check
+
+      - name: Publish package to TestPyPI
+        run: poetry publish --username wdsrocha --repository test-pypi
