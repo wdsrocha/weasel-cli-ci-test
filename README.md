@@ -2,6 +2,8 @@
 
 Simple implementation of the classic [weasel program](https://en.wikipedia.org/wiki/Weasel_program).
 
+![Build](https://github.com/wdsrocha/weasel-cli-ci-test/workflows/Build/badge.svg)
+
 ![demo](https://raw.githubusercontent.com/wdsrocha/weasel-cli/master/demo.png)
 
 ## Installation

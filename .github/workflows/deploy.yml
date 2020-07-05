@@ -1,13 +1,12 @@
-name: CI
+name: Deploy
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+  create:
+    tags:
+      - v*
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,5 +30,6 @@ jobs:
 
       - name: Build and check
         run: poetry build && poetry check
-      # - name: Publish package to TestPyPI
-      #   run: poetry publish --username wdsrocha --repository test-pypi
+
+      - name: Publish package to TestPyPI
+        run: poetry publish --username wdsrocha --repository test-pypi
